@@ -71,14 +71,18 @@ class PdfController extends Controller
     public function PDFClear(PDFDeleteRequest $request): JsonResponse|bool
     {
         try {
-            $request->validated();
+            $data = $request->validated();
 
-            array_filter(Storage::disk('public')->files('/PDFs'), function ($item) {
-                $modifiedDate = Storage::disk('public')->lastModified($item);
-                if(now()->timestamp - $modifiedDate > 1000000) {
-                    Storage::disk('public')->delete($item);
-                }
-            });
+            if(!$data['delete_all']) {
+                array_filter(Storage::disk('public')->files('/PDFs'), function ($item) {
+                    $modifiedDate = Storage::disk('public')->lastModified($item);
+                    if(now()->timestamp - $modifiedDate > 1000000) {
+                        Storage::disk('public')->delete($item);
+                    }
+                });
+            } else {
+                Storage::disk('public')->deleteDirectory('PDFs');
+            }
 
             return response()->json([
                 'code' => 200,

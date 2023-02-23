@@ -25,6 +25,7 @@ class PDFDeleteRequest extends FormRequest
     public function rules(): array
     {
         return [
+            "delete_all" => "required|boolean",
             "token" => [
                 'required',
                 Rule::in([env('PDF_TOKEN')]),
@@ -52,6 +53,8 @@ class PDFDeleteRequest extends FormRequest
     public function messages()
     {
         return [
+            "delete_all.required" => "delete_all flag is required",
+            "delete_all.boolean" => "delete_all should be true or false",
             "token.required" => "token is required",
             "token.in" => "token is not valid",
         ];
