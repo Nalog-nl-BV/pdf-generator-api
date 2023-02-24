@@ -48,7 +48,7 @@ Expamle request body (1)
 {
     "html": "<div class='container color'>Hello PDF</div>",
     "css": ".container { text-align: center } .color { color: green; }",
-    "token": "token",
+    "token": "{{token}}",
     "name": "nameOfFile",
     "type": "file"
 }
@@ -59,7 +59,7 @@ Expamle request body (2)
 {
     "html": "<style>.container { text-align: center } .color { color: green; }</style><div class='container color'>Hello PDF</div>",
     "css": "",
-    "token": "token",
+    "token": "{{token}}",
     "name": "nameOfFile",
     "type": "file"
 }
@@ -121,7 +121,7 @@ POST /api/pdf-clear
 Expamle request body
 ```sh
 {
-    "token": "token",
+    "token": "{{token}}",
     "delete_all": true
 }
 ```
