@@ -1,66 +1,163 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# PDF Generate API
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## Deployment
 
-## About Laravel
+To deploy this project run
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+```sh
+composer install
+```
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Create the symbolic link
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+```sh
+php artisan storage:link
+```
 
-## Learning Laravel
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## API Reference
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+```http
+URL https://pdf-generator.nalog.nl
+```
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+| Endpoint | Type | Description |
+| :--- | :--- | :--- |
+| `/api/pdf-generate` | `POST` | Generate PDF |
+| `/api/pdf-clear` | `POST` | Clear PDF folder on server |
 
-## Laravel Sponsors
+### Generate PDF 
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+```http
+POST /api/pdf-generate
+```
 
-### Premium Partners
+| Parameter | Type | Description |
+| :--- | :--- | :--- |
+| `html` | `string` | **Required**. Your html code |
+| `css` | `string` | **Optinal**. Your css code |
+| `name` | `string` | **Required**. Name of file (PDF) |
+| `type` | `string` | **Required**. Type of pdf: `file` or `base64` |
+| `token` | `string` | **Required**. Access token |
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+***Request***
+----
 
-## Contributing
+Expamle request body (1)
+```sh
+{
+    "html": "<div class='container color'>Hello PDF</div>",
+    "css": ".container { text-align: center } .color { color: green; }",
+    "token": "token",
+    "name": "nameOfFile",
+    "type": "file"
+}
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Expamle request body (2)
+```sh
+{
+    "html": "<style>.container { text-align: center } .color { color: green; }</style><div class='container color'>Hello PDF</div>",
+    "css": "",
+    "token": "token",
+    "name": "nameOfFile",
+    "type": "file"
+}
+```
 
-## Code of Conduct
+***Response***
+----
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+The `code` attribute return `200` - OK or `400` - ERROR.
 
-## Security Vulnerabilities
+The `status` attribute describes if the transaction was successful or not.
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+The `message` attribute contains a message commonly used to indicate errors.
 
-## License
+The `data` attribute contains url to PDF or base64 of PDF.
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Response OK
+```sh
+{
+    "code": 200,
+    "status": "success",
+    "message": null,
+    "data": [
+        "https://name.pdf"
+    ]
+}
+```
+
+Response Error
+```sh
+{
+    "code": 400,
+    "status": "error",
+    "message": "Validation errors",
+    "data": {
+        "token": [
+            "token is not valid"
+        ]
+        ...
+    }
+}
+```
+----
+
+### Clear PDF folder from server storage
+
+```http
+POST /api/pdf-clear
+```
+
+| Parameter | Type | Description |
+| :--- | :--- | :--- |
+| `delete_all` | `boolean` | **Required**. Delete all PDFs - `true` or only 10-days PDFs - `false` |
+| `token` | `string` | **Required**. Access token |
+
+***Request***
+----
+
+Expamle request body
+```sh
+{
+    "token": "token",
+    "delete_all": true
+}
+```
+
+***Response***
+----
+
+The `code` attribute return `200` - OK or `400` - ERROR.
+
+The `status` attribute describes if the transaction was successful or not.
+
+The `message` attribute contains a message commonly used to indicate errors.
+
+The `data` - null.
+
+Response OK
+```sh
+{
+    "code": 200,
+    "status": "success",
+    "message": null,
+    "data": null
+}
+```
+
+Response Error
+```sh
+{
+    "code": 400,
+    "status": "error",
+    "message": "Validation errors",
+    "data": {
+        "token": [
+            "token is not valid"
+        ]
+        ...
+    }
+}
+```
