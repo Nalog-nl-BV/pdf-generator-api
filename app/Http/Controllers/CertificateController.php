@@ -67,18 +67,18 @@ class CertificateController extends Controller
             if ($data["css"])
                 $document->WriteHTML($data["css"], HTMLParserMode::HEADER_CSS);
 
-//            $document->SetDefaultBodyCSS('background', "url('C:\programing\OpenServer\domains\PDF_generator\public\images\certificate_background_eng.jpg') no-repeat left center");
+            $document->SetDefaultBodyCSS('background', "url('https://internal.nalog.nl/wp-content/uploads/2023/05/photo_2023-05-08_14-55-30.jpg') no-repeat left center");
 //            $document->SetDefaultBodyCSS('background-image-opacity', "1");
 
             $html = new HtmlController();
 
             $data = [
                 "token" => $data["token"],
-                "number" => "AA34E",
-                "date" => "05.05.2023",
-                "clientName" => "Oleg Bortovsky",
-                "employeeName" => "Oleg Bortovsky",
-                "discount" => "€172",
+                "number" => $data["number"],
+                "date" => $data["date"],
+                "clientName" => $data["client"],
+                "employeeName" => $data["employee"],
+                "discount" => $data["discount"],
                 "offers" => [
                     [
                         "title" => "Offer - 1",
