@@ -6,11 +6,9 @@ use App\Http\Requests\CertificateGenerateRequest;
 use Exception;
 use Illuminate\Http\Client\Response;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
 use Mpdf\HTMLParserMode;
-use Mpdf\Mpdf;
-use Mpdf\Config\ConfigVariables;
-use Mpdf\Config\FontVariables;
 use Mpdf\Output\Destination;
 
 class CertificateController extends Controller
