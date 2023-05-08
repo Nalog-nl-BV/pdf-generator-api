@@ -73,6 +73,7 @@ class CertificateController extends Controller
             $html = new HtmlController();
 
             $data = [
+                "token" => $data["token"],
                 "number" => "AA34E",
                 "date" => "05.05.2023",
                 "clientName" => "Oleg Bortovsky",
