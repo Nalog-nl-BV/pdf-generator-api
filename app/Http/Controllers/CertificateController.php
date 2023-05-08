@@ -62,7 +62,7 @@ class CertificateController extends Controller
                 'default_font' => 'caveat'
             ]);
 
-            $documentFileName = $data["name"] . ".pdf";
+            $documentFileName = $data["fileName"] . ".pdf";
 
             $document->SetDefaultBodyCSS('background', "url('https://internal.nalog.nl/wp-content/uploads/2023/05/photo_2023-05-08_14-55-30.jpg') no-repeat left center");
 
@@ -70,25 +70,27 @@ class CertificateController extends Controller
 
             $data = [
                 "token" => $data["token"],
-                "number" => $data["number"],
+                "number" => $data["certificateNumber"],
                 "date" => $data["date"],
-                "clientName" => $data["client"],
-                "employeeName" => $data["employee"],
+                "clientName" => $data["clientName"],
+                "employeeName" => $data["employeeName"],
                 "discount" => $data["discount"],
-                "offers" => [
-                    [
-                        "title" => "Offer - 1",
-                        "link" => "https://www.nalog.nl/vse-uslugi/yuridiceskim-licam/registraciya-firm-2/registraciya-bv/",
-                    ],
-                    [
-                        "title" => "Offer - 2",
-                        "link" => "https://www.nalog.nl/vse-uslugi/yuridiceskim-licam/registraciya-firm-2/registraciya-bv/",
-                    ],
-                    [
-                        "title" => "Offer - 3",
-                        "link" => "",
-                    ],
-                ]
+                "discountType" => $data["discountType"],
+                "offers" => $data["offers"],
+//                "offers" => [
+//                    [
+//                        "title" => "Offer - 1",
+//                        "link" => "https://www.nalog.nl/vse-uslugi/yuridiceskim-licam/registraciya-firm-2/registraciya-bv/",
+//                    ],
+//                    [
+//                        "title" => "Offer - 2",
+//                        "link" => "https://www.nalog.nl/vse-uslugi/yuridiceskim-licam/registraciya-firm-2/registraciya-bv/",
+//                    ],
+//                    [
+//                        "title" => "Offer - 3",
+//                        "link" => "",
+//                    ],
+//                ]
             ];
             $document->WriteHTML($html->getHtml("certificate-eng", $data));
 
