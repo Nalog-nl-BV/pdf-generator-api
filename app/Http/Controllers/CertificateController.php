@@ -64,11 +64,7 @@ class CertificateController extends Controller
 
             $documentFileName = $data["name"] . ".pdf";
 
-            if ($data["css"])
-                $document->WriteHTML($data["css"], HTMLParserMode::HEADER_CSS);
-
             $document->SetDefaultBodyCSS('background', "url('https://internal.nalog.nl/wp-content/uploads/2023/05/photo_2023-05-08_14-55-30.jpg') no-repeat left center");
-//            $document->SetDefaultBodyCSS('background-image-opacity', "1");
 
             $html = new HtmlController();
 

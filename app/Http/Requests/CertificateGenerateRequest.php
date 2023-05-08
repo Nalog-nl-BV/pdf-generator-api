@@ -25,16 +25,10 @@ class CertificateGenerateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "html" => "required|string",
-            "css" => "nullable|string",
             "name" => "required|string",
             "token" => [
                 'required',
                 Rule::in([env('PDF_TOKEN')]),
-            ],
-            "type" =>  [
-                'required',
-                Rule::in(['file', 'base64']),
             ],
         ];
     }
