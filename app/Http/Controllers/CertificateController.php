@@ -107,7 +107,7 @@ class CertificateController extends Controller
                 "is_public" => true,
                 "files_data" => [
                     Storage::disk('public')->url('/Certificates/' . $documentFileName) => Hash::make($documentFileName),
-                    Storage::disk('public')->url('/Certificates/' . $imageName) => Hash::make($imageName),
+                    Storage::disk('public')->url('/Certificates/' . $imageName) => Hash::make($imageName) . "jpg",
                 ]
             ]);
 
