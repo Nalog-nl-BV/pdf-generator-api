@@ -13,23 +13,12 @@ class ImageController extends Controller
         $pdfPath = storage_path('app/public/Certificates/' . $documentFileName);
         $outputPath = storage_path("app/public/Certificates/" . $imageName);
 
-        // Convert the first page of the PDF to an image
         try {
             $pdf = new Pdf($pdfPath);
             $pdf->saveImage($outputPath);
-            return [
-                "code" => 200,
-                "status" => "success",
-                "message" => null,
-                "data" => $outputPath
-            ];
+            return true;
         } catch (PdfDoesNotExist $e) {
-            return [
-                "code" => 400,
-                "status" => "error",
-                "message" => $e->getMessage(),
-                "data" => null
-            ];
+            return false;
         }
         // Additional options:
         // ->setResolution(300) // Set the image resolution (default is 150)

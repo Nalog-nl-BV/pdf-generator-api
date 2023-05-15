@@ -79,36 +79,34 @@ class CertificateController extends Controller
                 "discount" => $data["discount"],
                 "discountType" => $data["discountType"],
                 "offers" => $data["offers"],
-//                "offers" => [
-//                    [
-//                        "title" => "Offer - 1",
-//                        "link" => "https://www.nalog.nl/vse-uslugi/yuridiceskim-licam/registraciya-firm-2/registraciya-bv/",
-//                    ],
-//                    [
-//                        "title" => "Offer - 2",
-//                        "link" => "https://www.nalog.nl/vse-uslugi/yuridiceskim-licam/registraciya-firm-2/registraciya-bv/",
-//                    ],
-//                    [
-//                        "title" => "Offer - 3",
-//                        "link" => "",
-//                    ],
-//                ]
             ];
+
             $document->WriteHTML($html->getHtml("certificate-eng", $data));
 
             Storage::disk('public')->put('/Certificates/' . $documentFileName, $document->Output($documentFileName, Destination::STRING_RETURN));
-
-            (new ImageController)->convertPdfToImage($documentFileName, $imageName);
+            if($data["image"]) {
+                if((new ImageController)->convertPdfToImage($documentFileName, $imageName)) {
+                    $filesData = [
+                        Storage::disk('public')->url('/Certificates/' . $documentFileName) => Hash::make($documentFileName),
+                        Storage::disk('public')->url('/Certificates/' . $imageName) => Hash::make($imageName)
+                    ];
+                } else {
+                    $filesData = [
+                        Storage::disk('public')->url('/Certificates/' . $documentFileName) => Hash::make($documentFileName),
+                    ];
+                }
+            } else {
+                $filesData = [
+                    Storage::disk('public')->url('/Certificates/' . $documentFileName) => Hash::make($documentFileName),
+                ];
+            }
 
             return Http::post('https://hub.nalog.nl/api/v1/storage/store', [
                 "token" => $data["token"],
                 "bucket_name" => "nalog",
                 "dir_name" => "certificates",
                 "is_public" => true,
-                "files_data" => [
-                    Storage::disk('public')->url('/Certificates/' . $documentFileName) => Hash::make($documentFileName),
-                    Storage::disk('public')->url('/Certificates/' . $imageName) => Hash::make($imageName)
-                ]
+                "files_data" => $filesData
             ]);
 
         } catch (Exception $e) {
