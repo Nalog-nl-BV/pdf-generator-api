@@ -7,6 +7,7 @@ use App\Http\Requests\PDFGenerateRequest;
 use Exception;
 use Illuminate\Http\Client\Response;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
 use Mpdf\HTMLParserMode;
@@ -53,7 +54,7 @@ class PdfController extends Controller
                     "dir_name" => "test",
                     "is_public" => true,
                     "files_data" => [
-                        Storage::disk('public')->url('/PDFs/' . $documentFileName) => $documentFileName
+                        Storage::disk('public')->url('/PDFs/' . $documentFileName) => Hash::make($documentFileName)
                     ]
                 ]);
             }
