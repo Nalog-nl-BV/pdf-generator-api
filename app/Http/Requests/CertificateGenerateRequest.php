@@ -33,6 +33,7 @@ class CertificateGenerateRequest extends FormRequest
             "discount" => "required",
             "discountType" => "required",
             "offers" => "required",
+            "image" => "required|boolean",
             "token" => [
                 'required',
                 Rule::in([env('PDF_TOKEN')]),
