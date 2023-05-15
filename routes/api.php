@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CertificateController;
+use App\Http\Controllers\ImageController;
 use App\Http\Controllers\PdfController;
 use Illuminate\Support\Facades\Route;
 
@@ -18,4 +19,5 @@ use Illuminate\Support\Facades\Route;
 Route::post('pdf-generate', [PdfController::class, 'PDFGenerate']);
 Route::post('pdf-clear', [PdfController::class, 'PDFClear']);
 Route::post('certificate', [CertificateController::class, 'CertificateGenerate']);
+Route::post('pdf-to-image', [ImageController::class, 'convertPdfToImage']);
 
