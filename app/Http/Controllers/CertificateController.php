@@ -79,6 +79,7 @@ class CertificateController extends Controller
                 "discount" => $data["discount"],
                 "discountType" => $data["discountType"],
                 "offers" => $data["offers"],
+                "image" => $data["image"],
             ];
 
             $document->WriteHTML($html->getHtml("certificate-eng", $data));
