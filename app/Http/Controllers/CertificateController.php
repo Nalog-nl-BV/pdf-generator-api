@@ -64,7 +64,7 @@ class CertificateController extends Controller
             ]);
 
             $documentFileName = $data["fileName"] . ".pdf";
-            $imageName = $data["fileName"] . "jpg";
+            $imageName = $data["fileName"] . ".jpg";
 
             $document->SetDefaultBodyCSS('background', "url('https://internal.nalog.nl/wp-content/uploads/2023/05/photo_2023-05-08_14-55-30.jpg') no-repeat left center");
 
@@ -107,7 +107,7 @@ class CertificateController extends Controller
                 "is_public" => true,
                 "files_data" => [
                     Storage::disk('public')->url('/Certificates/' . $documentFileName) => Hash::make($documentFileName),
-                    Storage::disk('public')->url('/Certificates/' . $imageName) => Hash::make($imageName) . ".jpg",
+                    Storage::disk('public')->url('/Certificates/' . $imageName) => Hash::make($imageName)
                 ]
             ]);
 
