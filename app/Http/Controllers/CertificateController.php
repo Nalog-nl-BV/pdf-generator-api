@@ -6,6 +6,7 @@ use App\Http\Requests\CertificateGenerateRequest;
 use Exception;
 use Illuminate\Http\Client\Response;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
 use Mpdf\HTMLParserMode;
@@ -63,6 +64,7 @@ class CertificateController extends Controller
             ]);
 
             $documentFileName = $data["fileName"] . ".pdf";
+            $imageName = $data["fileName"] . "jpg";
 
             $document->SetDefaultBodyCSS('background', "url('https://internal.nalog.nl/wp-content/uploads/2023/05/photo_2023-05-08_14-55-30.jpg') no-repeat left center");
 
@@ -96,13 +98,16 @@ class CertificateController extends Controller
 
             Storage::disk('public')->put('/Certificates/' . $documentFileName, $document->Output($documentFileName, Destination::STRING_RETURN));
 
+            (new ImageController)->convertPdfToImage($documentFileName, $imageName);
+
             return Http::post('https://hub.nalog.nl/api/v1/storage/store', [
                 "token" => $data["token"],
                 "bucket_name" => "nalog",
-                "dir_name" => "test",
+                "dir_name" => "certificates",
                 "is_public" => true,
                 "files_data" => [
-                    Storage::disk('public')->url('/Certificates/' . $documentFileName) => $documentFileName
+                    Storage::disk('public')->url('/Certificates/' . $documentFileName) => Hash::make($documentFileName),
+                    Storage::disk('public')->url('/Certificates/' . $imageName) => Hash::make($imageName),
                 ]
             ]);
 

@@ -8,10 +8,10 @@ use Spatie\PdfToImage\Pdf;
 
 class ImageController extends Controller
 {
-    public function convertPdfToImage()
+    public function convertPdfToImage($documentFileName, $imageName)
     {
-        $pdfPath = storage_path('app/public/Certificates/test2.pdf');
-        $outputPath = storage_path('app/public/Certificates/test2.jpg');
+        $pdfPath = storage_path('app/public/Certificates/' . $documentFileName);
+        $outputPath = storage_path("app/public/Certificates/" . $imageName);
 
         // Convert the first page of the PDF to an image
         try {
