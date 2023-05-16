@@ -31,15 +31,15 @@ class SwiftBankTaxController extends Controller
 
             $document->WriteHTML($html->getHtml("swift-bank-tax-office", $templateData));
 
-            Storage::disk('public')->put('/PDFs/' . $documentFileName, $document->Output($documentFileName, Destination::STRING_RETURN));
+            Storage::disk('public')->put('/Documents/swift_bank_taxes/' . $documentFileName, $document->Output($documentFileName, Destination::STRING_RETURN));
 
             return Http::post('https://hub.nalog.nl/api/v1/storage/store', [
                 "token" => $data["token"],
                 "bucket_name" => "nalog",
-                "dir_name" => "test",
+                "dir_name" => "swift_bank_taxes",
                 "is_public" => true,
                 "files_data" => [
-                    Storage::disk('public')->url('/PDFs/' . $documentFileName) => Hash::make(date('Y-m-d H:i:s'))
+                    Storage::disk('public')->url('/Documents/swift_bank_taxes/' . $documentFileName) => Hash::make(date('Y-m-d H:i:s'))
                 ]
             ]);
 
