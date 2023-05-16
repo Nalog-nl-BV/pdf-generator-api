@@ -27,7 +27,16 @@ class SwiftBankTaxController extends Controller
 
             $html = new HtmlController();
 
-            $templateData = [];
+            $templateData = [
+                "date" => $data["date"],
+                "name" => $data["name"],
+                "bsn" => $data["bsn"],
+                "birthday" => $data["birthday"],
+                "bank_name" => $data["bank_name"],
+                "full_name" => $data["full_name"],
+                "iban" => $data["iban"],
+                "bank_address" => $data["bank_address"],
+            ];
 
             $document->WriteHTML($html->getHtml("swift-bank-tax-office", $templateData));
 
@@ -39,7 +48,7 @@ class SwiftBankTaxController extends Controller
                 "dir_name" => "swift_bank_taxes",
                 "is_public" => true,
                 "files_data" => [
-                    Storage::disk('public')->url('/Documents/swift_bank_taxes/' . $documentFileName) => Hash::make(date('Y-m-d H:i:s'))
+                    Storage::disk('public')->url('/Documents/swift_bank_taxes/' . $documentFileName) => uniqid() . '.pdf',
                 ]
             ]);
 
