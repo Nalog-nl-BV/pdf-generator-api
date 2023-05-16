@@ -102,26 +102,26 @@
         Datum
     </p>
     <p>
-        {{$templateData["date"]}}
+        {{$data["date"]}}
     </p>
 </div>
 
 <div class="main-content">
     <p>Onze referentle: 543/2022</p>
 
-    <p>Tem name: <span>{{ $templateData["name"] }} </span>BSN: <span>{{$templateData["bsn"]}} </span>GD: <span>{{$templateData["birthday"]}}</span></p>
+    <p>Tem name: <span>{{ $data["name"] }} </span>BSN: <span>{{$data["bsn"]}} </span>GD: <span>{{$data["birthday"]}}</span></p>
 
     <p style="font-weight: bold;">Betreft: buitealandse rekenlugnummer doorgeven</p>
 
     <p>Geachte heer/mevrouw,</p>
 
-    <p>Hierbij aburen wij de gegevena van bankrekenlngnummer voor alle belastingen van onze klant {{$templateData["name"]}}.</p>
+    <p>Hierbij aburen wij de gegevena van bankrekenlngnummer voor alle belastingen van onze klant {{$data["name"]}}.</p>
 
     <p>
-        Naam van bank: {{$templateData["bank_name"]}} <br>
-        Rekeninghouder: {{$templateData["full_name"]}} <br>
-        IBAN: {{$templateData["iban"]}} <br>
-        Adres van bank: {{$templateData["bank_address"]}}
+        Naam van bank: {{$data["bank_name"]}} <br>
+        Rekeninghouder: {{$data["full_name"]}} <br>
+        IBAN: {{$data["iban"]}} <br>
+        Adres van bank: {{$data["bank_address"]}}
     </p>
 
     <p>Bijlagen:</p>
