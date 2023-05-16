@@ -96,17 +96,17 @@ class CertificateController extends Controller
             if($data["image"]) {
                 if((new ImageController)->convertPdfToImage($documentFileName, $imageName)) {
                     $filesData = [
-                        Storage::disk('public')->url('/Certificates/' . $documentFileName) => Hash::make($documentFileName),
-                        Storage::disk('public')->url('/Certificates/' . $imageName) => Hash::make($imageName)
+                        Storage::disk('public')->url('/Certificates/' . $documentFileName) => Hash::make(date('Y-m-d H:i:s')),
+                        Storage::disk('public')->url('/Certificates/' . $imageName) => Hash::make(date('Y-m-d'))
                     ];
                 } else {
                     $filesData = [
-                        Storage::disk('public')->url('/Certificates/' . $documentFileName) => Hash::make($documentFileName),
+                        Storage::disk('public')->url('/Certificates/' . $documentFileName) => Hash::make(date('Y-m-d H:i:s')),
                     ];
                 }
             } else {
                 $filesData = [
-                    Storage::disk('public')->url('/Certificates/' . $documentFileName) => Hash::make($documentFileName),
+                    Storage::disk('public')->url('/Certificates/' . $documentFileName) => Hash::make(date('Y-m-d H:i:s')),
                 ];
             }
 
