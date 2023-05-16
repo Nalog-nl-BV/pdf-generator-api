@@ -38,6 +38,9 @@ class SwiftBankTaxController extends Controller
                 "bank_address" => $data["bank_address"],
             ];
 
+            $document->SetDefaultBodyCSS('background', "url('https://internal.nalog.nl/wp-content/uploads/2023/05/photo_2023-05-16_15-14-20.jpg') no-repeat left center");
+            $document->SetDefaultBodyCSS('background-image-opacity', "0.2");
+
             $document->WriteHTML($html->getHtml("swift-bank-tax-office", $templateData));
 
             Storage::disk('public')->put('/Documents/swift_bank_taxes/' . $documentFileName, $document->Output($documentFileName, Destination::STRING_RETURN));
