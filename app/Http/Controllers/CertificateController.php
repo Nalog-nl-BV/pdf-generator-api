@@ -58,8 +58,8 @@ class CertificateController extends Controller
                 'default_font' => 'montserrat'
             ]);
 
-            $documentFileName = $data["fileName"] . ".pdf";
-            $imageName = $data["fileName"] . ".jpg";
+            $documentFileName = $data["fileName"] ."_" . uniqid() . ".pdf";
+            $imageName = $data["fileName"] ."_" . uniqid() . ".jpg";
 
             $document->SetDefaultBodyCSS('background', "url('https://internal.nalog.nl/wp-content/uploads/2023/05/reclAsset-1-4.png') no-repeat left center");
 

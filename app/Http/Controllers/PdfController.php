@@ -27,7 +27,7 @@ class PdfController extends Controller
 
             $document = new Mpdf();
 
-            $documentFileName = $data["name"] . ".pdf";
+            $documentFileName = $data["name"] ."_" . uniqid() . ".pdf";
 
             if ($data["css"])
                 $document->WriteHTML($data["css"], HTMLParserMode::HEADER_CSS);
@@ -54,7 +54,7 @@ class PdfController extends Controller
                     "dir_name" => "PDFs",
                     "is_public" => true,
                     "files_data" => [
-                        Storage::disk('public')->url('/PDFs/' . $documentFileName) => Hash::make($documentFileName)
+                        Storage::disk('public')->url('/PDFs/' . $documentFileName) => uniqid() . '.pdf'
                     ]
                 ]);
             }

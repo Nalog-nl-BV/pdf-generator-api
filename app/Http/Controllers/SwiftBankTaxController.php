@@ -23,7 +23,7 @@ class SwiftBankTaxController extends Controller
 
             $document = new Mpdf();
 
-            $documentFileName = $data["fileName"] . ".pdf";
+            $documentFileName = $data["fileName"] ."_" . uniqid() . ".pdf";
 
             $html = new HtmlController();
 
