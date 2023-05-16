@@ -102,26 +102,26 @@
         Datum
     </p>
     <p>
-        5/16/2023
+        {{$templateData["date"]}}
     </p>
 </div>
 
 <div class="main-content">
     <p>Onze referentle: 543/2022</p>
 
-    <p>Tem name: <span>A.P. Stamere </span>BSN: <span>422698568 </span>GD: <span>15.11.1998</span></p>
+    <p>Tem name: <span>{{ $templateData["name"] }} </span>BSN: <span>{{$templateData["bsn"]}} </span>GD: <span>{{$templateData["birthday"]}}</span></p>
 
     <p style="font-weight: bold;">Betreft: buitealandse rekenlugnummer doorgeven</p>
 
     <p>Geachte heer/mevrouw,</p>
 
-    <p>Hierbij aburen wij de gegevena van bankrekenlngnummer voor alle belastingen van onze klant A.P.Stamere.</p>
+    <p>Hierbij aburen wij de gegevena van bankrekenlngnummer voor alle belastingen van onze klant {{$templateData["name"]}}.</p>
 
     <p>
-        Naam van bank: Swedbank <br>
-        Rekeninghouder: ANNA PEULA STAMERE <br>
-        IBAN: LV55 HABA 0551 0473 8575 8 <br>
-        Adres van bank: RAINA 44-43, RIGA, LV-1063, Latvia
+        Naam van bank: {{$templateData["bank_name"]}} <br>
+        Rekeninghouder: {{$templateData["full_name"]}} <br>
+        IBAN: {{$templateData["iban"]}} <br>
+        Adres van bank: {{$templateData["bank_address"]}}
     </p>
 
     <p>Bijlagen:</p>
