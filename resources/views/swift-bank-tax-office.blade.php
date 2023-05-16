@@ -78,7 +78,7 @@
     .footer {
         position: absolute;
         bottom: 50px;
-        right: 30%;
+        width: 100%;
         text-align: center;
     }
 </style>
