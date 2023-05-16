@@ -96,17 +96,17 @@ class CertificateController extends Controller
             if($data["image"]) {
                 if((new ImageController)->convertPdfToImage($documentFileName, $imageName)) {
                     $filesData = [
-                        Storage::disk('public')->url('/Certificates/' . $documentFileName) => $documentFileName . "_" . date('Y-m-d H:i:s'),
-                        Storage::disk('public')->url('/Certificates/' . $imageName) => $imageName . "_" . date('Y-m-d H:i:s')
+                        Storage::disk('public')->url('/Certificates/' . $documentFileName) => uniqid() . '.pdf',
+                        Storage::disk('public')->url('/Certificates/' . $imageName) => uniqid() . '.jpg',
                     ];
                 } else {
                     $filesData = [
-                        Storage::disk('public')->url('/Certificates/' . $documentFileName) => $documentFileName . "_" . date('Y-m-d H:i:s'),
+                        Storage::disk('public')->url('/Certificates/' . $documentFileName) => uniqid() . '.pdf',
                     ];
                 }
             } else {
                 $filesData = [
-                    Storage::disk('public')->url('/Certificates/' . $documentFileName) => $documentFileName . "_" . date('Y-m-d H:i:s'),
+                    Storage::disk('public')->url('/Certificates/' . $documentFileName) => uniqid() . '.pdf',
                 ];
             }
 
