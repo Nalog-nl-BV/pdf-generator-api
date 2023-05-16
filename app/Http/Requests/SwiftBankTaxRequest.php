@@ -25,6 +25,14 @@ class SwiftBankTaxRequest extends FormRequest
     public function rules(): array
     {
         return [
+            "date" => "required|string",
+            "name" => "required|string",
+            "bsn" => "required|string",
+            "birthday" => "required|string",
+            "bank_name" => "required|string",
+            "full_name" => "required|string",
+            "iban" => "required|string",
+            "bank_address" => "required|string",
             "fileName" => "required|string",
             "token" => [
                 'required',
