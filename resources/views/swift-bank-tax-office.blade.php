@@ -3,7 +3,7 @@
 
     .container {
         width: 752px;
-        height: 1000px;
+        height: 1050px;
         margin: 0 auto;
 
         padding: 10px 40px;
@@ -40,10 +40,22 @@
         margin-top: 30px;
     }
 
-    .signature {
+    .signature_name {
         margin-top: 20px;
         margin-bottom: 10px;
-        height: 80px;
+        height: 100px;
+    }
+
+    .signature_sign {
+        position: absolute;
+        left: 70px;
+        bottom: 170px;
+    }
+
+    .stamp {
+        position: absolute;
+        right: 200px;
+        bottom: 180px;
     }
 
     .contact_left p,
@@ -54,15 +66,19 @@
     .contact_left {
         position: absolute;
         left: 60px;
+        bottom: 80px;
     }
 
     .contact_right {
         position: absolute;
         right: 130px;
+        bottom: 80px;
     }
 
     .footer {
-        margin-top: 113px;
+        position: absolute;
+        bottom: 50px;
+        right: 30%;
         text-align: center;
     }
 </style>
@@ -126,13 +142,14 @@
     </p>
 </div>
 
-<div class="signature">
-    <div class="name">
-        Julia Jurik
-    </div>
-    <div class="stamp">
-
-    </div>
+<div class="signature_name">
+    Julia Jurik
+</div>
+<div class="signature_sign">
+    <img src="https://internal.nalog.nl/wp-content/uploads/2023/05/photo_2023-05-16_15-59-06.jpg" alt="sign" width="70">
+</div>
+<div class="stamp">
+    <img src="https://internal.nalog.nl/wp-content/uploads/2023/05/photo_2023-05-16_15-14-19.jpg" alt="stamp" width="180">
 </div>
 
 <div class="contact_left">
