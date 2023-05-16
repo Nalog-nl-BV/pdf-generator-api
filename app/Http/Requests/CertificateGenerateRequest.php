@@ -32,7 +32,7 @@ class CertificateGenerateRequest extends FormRequest
             "employeeName" => "required",
             "discount" => "required",
             "discountType" => "required",
-            "offers" => "required",
+            "offer" => "required",
             "image" => "required|boolean",
             "token" => [
                 'required',

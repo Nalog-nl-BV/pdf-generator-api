@@ -18,7 +18,7 @@ class CertificateController extends Controller
      * @param CertificateGenerateRequest $request
      * @return JsonResponse|Response
      */
-    public function CertificateGenerate(Request $request)
+    public function CertificateGenerate(CertificateGenerateRequest $request)
     {
         try {
             $data = $request;
@@ -73,7 +73,7 @@ class CertificateController extends Controller
                 "employeeName" => $data["employeeName"],
                 "discount" => $data["discount"],
                 "discountType" => $data["discountType"],
-                "offers" => $data["offers"],
+                "offer" => $data["offer"],
                 "image" => $data["image"],
             ];
 
