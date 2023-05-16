@@ -83,6 +83,8 @@ class PdfController extends Controller
                 });
             } else {
                 Storage::disk('public')->deleteDirectory('PDFs');
+                Storage::disk('public')->deleteDirectory('Certificates');
+                Storage::disk('public')->deleteDirectory('Documents');
             }
 
             return response()->json([
