@@ -2,17 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\PDFDeleteRequest;
-use App\Http\Requests\PDFGenerateRequest;
 use App\Http\Requests\SwiftBankTaxRequest;
 use Exception;
-use Illuminate\Http\Client\Response;
-use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
-use Mpdf\HTMLParserMode;
 use Mpdf\Mpdf;
 use Mpdf\Output\Destination;
 
@@ -33,9 +27,9 @@ class SwiftBankTaxController extends Controller
 
             $html = new HtmlController();
 
-            $data = [];
+            $templateData = [];
 
-            $document->WriteHTML($html->getHtml("swift-bank-tax-office", $data));
+            $document->WriteHTML($html->getHtml("swift-bank-tax-office", $templateData));
 
             Storage::disk('public')->put('/PDFs/' . $documentFileName, $document->Output($documentFileName, Destination::STRING_RETURN));
 
