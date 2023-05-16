@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CertificateController;
 use App\Http\Controllers\ImageController;
+use App\Http\Controllers\PdfController;
 use App\Http\Controllers\SwiftBankTaxController;
 use Illuminate\Support\Facades\Route;
 
@@ -16,8 +17,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::post('pdf-generate', [SwiftBankTaxController::class, 'PDFGenerate']);
-Route::post('pdf-clear', [SwiftBankTaxController::class, 'PDFClear']);
+Route::post('pdf-generate', [PdfController::class, 'PDFGenerate']);
+Route::post('pdf-clear', [PdfController::class, 'PDFClear']);
 Route::post('certificate', [CertificateController::class, 'CertificateGenerate']);
 Route::post('pdf-to-image', [ImageController::class, 'convertPdfToImage']);
 Route::post('swift-bank-tax-office', [SwiftBankTaxController::class, 'index']);
