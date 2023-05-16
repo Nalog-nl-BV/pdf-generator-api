@@ -220,7 +220,7 @@
         Сумма скидки на услугу:
     </div>
     <div class="discount-number">
-        &euro;{{ $data["discount"] }}
+        &#8364;{{ $data["discount"] }}
     </div>
 
     <div class="validUntil_title">
