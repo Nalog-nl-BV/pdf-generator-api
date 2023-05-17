@@ -195,11 +195,27 @@
 </style>
 <body class="container">
     <div class="certificate-title">
-        Скидочный<br>купон
+        @if( $data["language"] == "en")
+            Discount<br>coupon
+        @elseif($data["language"] == "ua")
+            Купон на<br>знижку
+        @elseif($data["language"] == "ru")
+            Скидочный<br>купон
+        @else()
+            Скидочный<br>купон
+        @endif
     </div>
 
     <div class="offer-title">
-        на улугу:
+        @if( $data["language"] == "en")
+            for the service:
+        @elseif($data["language"] == "ua")
+            на послугу
+        @elseif($data["language"] == "ru")
+            на услугу:
+        @else()
+            на услугу:
+        @endif
     </div>
     <div class="offer">
         <a class="link" href={{ $data["offer"]["link"] }}>
@@ -209,7 +225,15 @@
 
     <div class="name-container">
         <div class="name-title">
-            Получатель купона:
+            @if( $data["language"] == "en")
+                Coupon recipient:
+            @elseif($data["language"] == "ua")
+                Одержувач купона:
+            @elseif($data["language"] == "ru")
+                Получатель купона:
+            @else()
+                Получатель купона:
+            @endif
         </div>
         <div class="name">
             {{ $data["clientName"] }}
@@ -217,35 +241,74 @@
     </div>
 
     <div class="discount-title">
-        Сумма скидки на услугу:
+        @if( $data["language"] == "en")
+            The amount of the service discount:
+        @elseif($data["language"] == "ua")
+            Сумма знижки на послугу:
+        @elseif($data["language"] == "ru")
+            Сумма скидки на услугу:
+        @else()
+            Сумма скидки на услугу:
+        @endif
     </div>
     <div class="discount-number">
         &#8364;{{ $data["discount"] }}
     </div>
 
     <div class="validUntil_title">
-        Действителен до
+        @if( $data["language"] == "en")
+            Valid until
+        @elseif($data["language"] == "ua")
+            Дійсний до
+        @elseif($data["language"] == "ru")
+            Действителен до
+        @else()
+            Действителен до
+        @endif
     </div>
     <div class="validUntil_value">
         {{ $data["date"] }}
     </div>
 
     <div class="employee_title">
-        Купон выдал сотрудник
+        @if( $data["language"] == "en")
+            The coupon was issued by an employee
+        @elseif($data["language"] == "ua")
+            Купон видав співробітник
+        @elseif($data["language"] == "ru")
+            Купон выдал сотрудник
+        @else()
+            Купон выдал сотрудник
+        @endif
     </div>
     <div class="employee_value">
         {{ $data["employeeName"] }}
     </div>
 
     <div class="number-title">
-        Номер купона
+        @if( $data["language"] == "en")
+            Coupon number
+        @elseif($data["language"] == "ua")
+            Номер купона
+        @elseif($data["language"] == "ru")
+            Номер купона
+        @else()
+            Номер купона
+        @endif
     </div>
     <div class="number">
         {{ $data["number"] }}
     </div>
 
     <div class="footer">
-        Чтобы оформить заказ со скидкой, введите номер купона в соответсвующее поле на странице услуги, указаной в купоне
-    {{--    Certificate is valid until 05.05.2023. After this date, the certificate expires and is no longer accepted.--}}
+        @if( $data["language"] == "en")
+            To place your order at a discount, enter the coupon number in the appropriate field on the service page indicated in the coupon
+        @elseif($data["language"] == "ua")
+            Щоб оформити замовлення зі знижкою, введіть номер купона у відповідне поле на сторінці послуги, зазначеної в купоні
+        @elseif($data["language"] == "ru")
+            Чтобы оформить заказ со скидкой, введите номер купона в соответсвующее поле на странице услуги, указаной в купоне
+        @else()
+            Чтобы оформить заказ со скидкой, введите номер купона в соответсвующее поле на странице услуги, указаной в купоне
+        @endif
     </div>
 </body>

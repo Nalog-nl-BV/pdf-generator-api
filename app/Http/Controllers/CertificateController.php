@@ -67,6 +67,7 @@ class CertificateController extends Controller
 
             $data = [
                 "token" => $data["token"],
+                "language" => $data["language"],
                 "number" => $data["certificateNumber"],
                 "date" => $data["date"],
                 "clientName" => $data["clientName"],
@@ -76,19 +77,6 @@ class CertificateController extends Controller
                 "offer" => $data["offer"],
                 "image" => $data["image"],
             ];
-
-//            $data = [
-//                "number" => "12WEd1",
-//                "date" => "09/05/2024",
-//                "clientName" => "Oleg Bortovsky",
-//                "employeeName" => "Oleg Bortovsky",
-//                "discount" => "Є172",
-//                "discountType" => "type",
-//                "offer" => [
-//                    "title" => "открытие BV",
-//                    "link" => "https://www.nalog.nl/vse-uslugi/yuridiceskim-licam/registraciya-firm-2/registraciya-bv/"
-//                ]
-//            ];
 
             $document->WriteHTML($html->getHtml("certificate-eng", $data));
 
