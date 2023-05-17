@@ -266,9 +266,13 @@
         @endif
     </div>
     <div class="offer">
-        <a class="link" href={{ $data["offer"]["link"] }}>
+        @if(isset($data["offer"]["link"]) && $data["offer"]["link"])
+            <a class="link" href={{ $data["offer"]["link"] }}>
+                {{ $data["offer"]["title"] }}
+            </a>
+        @else
             {{ $data["offer"]["title"] }}
-        </a>
+        @endif
     </div>
 
     <div class="name-container">
