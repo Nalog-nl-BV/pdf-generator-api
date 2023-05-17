@@ -115,6 +115,30 @@
         bottom: 187px;
         left: 95px;
     }
+    .validUntil_title_ua {
+        font-family: "montserrat-black", sans-serif;
+        color: #188682;
+        font-size: 20px;
+        font-weight: regular;
+
+        width: 255px;
+        height: 30px;
+        position: absolute;
+        bottom: 187px;
+        left: 130px;
+    }
+    .validUntil_title_en {
+        font-family: "montserrat-black", sans-serif;
+        color: #188682;
+        font-size: 20px;
+        font-weight: regular;
+
+        width: 255px;
+        height: 30px;
+        position: absolute;
+        bottom: 187px;
+        left: 135px;
+    }
     .validUntil_value {
         font-family: "montserrat-black", sans-serif;
         color: black;
@@ -140,6 +164,18 @@
         bottom: 187px;
         left: 450px;
     }
+    .employee_title_en {
+        font-family: "montserrat-black", sans-serif;
+        color: #188682;
+        font-size: 20px;
+        font-weight: regular;
+
+        width: 477px;
+        height: 30px;
+        position: absolute;
+        bottom: 187px;
+        left: 380px;
+    }
     .employee_value {
         font-family: "montserrat-black", sans-serif;
         color: black;
@@ -164,6 +200,18 @@
         position: absolute;
         bottom: 180px;
         right: 210px;
+    }
+    .number-title_en {
+        font-family: "montserrat-black", sans-serif;
+        color: #000000;
+        font-size: 20px;
+        font-weight: regular;
+
+        width: 220px;
+        height: 30px;
+        position: absolute;
+        bottom: 180px;
+        right: 215px;
     }
     .number {
         font-family: "montserrat-black", sans-serif;
@@ -255,47 +303,65 @@
         &#8364;{{ $data["discount"] }}
     </div>
 
-    <div class="validUntil_title">
-        @if( $data["language"] == "en")
+    @if( $data["language"] == "en")
+        <div class="validUntil_title_en">
             Valid until
-        @elseif($data["language"] == "ua")
+        </div>
+    @elseif($data["language"] == "ua")
+        <div class="validUntil_title_ua">
             Дійсний до
-        @elseif($data["language"] == "ru")
+        </div>
+    @elseif($data["language"] == "ru")
+        <div class="validUntil_title">
             Действителен до
-        @else()
+        </div>
+    @else()
+        <div class="validUntil_title">
             Действителен до
-        @endif
-    </div>
+        </div>
+    @endif
     <div class="validUntil_value">
         {{ $data["date"] }}
     </div>
 
-    <div class="employee_title">
-        @if( $data["language"] == "en")
+    @if( $data["language"] == "en")
+        <div class="employee_title_en">
             The coupon was issued by an employee
-        @elseif($data["language"] == "ua")
+        </div>
+    @elseif($data["language"] == "ua")
+        <div class="employee_title">
             Купон видав співробітник
-        @elseif($data["language"] == "ru")
+        </div>
+    @elseif($data["language"] == "ru")
+        <div class="employee_title">
             Купон выдал сотрудник
-        @else()
+        </div>
+    @else()
+        <div class="employee_title">
             Купон выдал сотрудник
-        @endif
-    </div>
+        </div>
+    @endif
     <div class="employee_value">
         {{ $data["employeeName"] }}
     </div>
 
-    <div class="number-title">
-        @if( $data["language"] == "en")
+    @if( $data["language"] == "en")
+        <div class="number-title_en">
             Coupon number
-        @elseif($data["language"] == "ua")
+        </div>
+    @elseif($data["language"] == "ua")
+        <div class="number-title">
             Номер купона
-        @elseif($data["language"] == "ru")
+        </div>
+    @elseif($data["language"] == "ru")
+        <div class="number-title">
             Номер купона
-        @else()
+        </div>
+    @else()
+        <div class="number-title">
             Номер купона
-        @endif
-    </div>
+        </div>
+    @endif
     <div class="number">
         {{ $data["number"] }}
     </div>
