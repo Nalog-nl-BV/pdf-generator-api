@@ -27,15 +27,15 @@ class CertificateGenerateRequest extends FormRequest
         return [
             "fileName" => "required|string",
             "certificateNumber" => "required|string",
-            "date" => "required",
-            "clientName" => "required",
-            "employeeName" => "required",
+            "date" => "required|string",
+            "clientName" => "required|string",
+            "employeeName" => "required|string",
             "discount" => "required",
-            "discountType" => "required",
-            "offer" => "required",
+            "offer" => "required|array",
             "image" => "required|boolean",
             "language" => [
                 'required',
+                'string',
                 Rule::in(['ua', 'en', 'ru'])
             ],
             "token" => [
