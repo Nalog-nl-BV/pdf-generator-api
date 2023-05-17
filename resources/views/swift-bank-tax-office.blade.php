@@ -55,7 +55,7 @@
     .stamp {
         position: absolute;
         right: 200px;
-        bottom: 180px;
+        bottom: 175px;
     }
 
     .contact_left p,
@@ -149,7 +149,7 @@
     <img src="https://internal.nalog.nl/wp-content/uploads/2023/05/photo_2023-05-16_15-59-06.jpg" alt="sign" width="70">
 </div>
 <div class="stamp">
-    <img src="https://internal.nalog.nl/wp-content/uploads/2023/05/photo_2023-05-16_15-14-19.jpg" alt="stamp" width="180">
+    <img src="https://internal.nalog.nl/wp-content/uploads/2023/05/print.png" alt="stamp" width="180">
 </div>
 
 <div class="contact_left">
