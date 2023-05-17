@@ -176,7 +176,7 @@ POST /api/certificate
 | `date` | `string` | **Required**. Valid until (05.17.2024) |
 | `clientName` | `string` | **Required**. Client name (eng) |
 | `employeeName` | `string` | **Required**. Employee who issued the coupon (eng) |
-| `discount` | `string|number` | **Required**. Discount value (just a number, without currency) |
+| `discount` | `string` `number` | **Required**. Discount value (just a number, without currency) |
 | `offer` | `array` | **Required**. Offer - associative array ["title" => "Offer Title", "link" => "link"]|
 | `offer["title"]` | `string` | **Required**. Offer title |
 | `offer["link"]` | `string` | **Optional**. Offer link |
