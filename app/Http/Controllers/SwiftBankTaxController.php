@@ -27,6 +27,10 @@ class SwiftBankTaxController extends Controller
 
             $html = new HtmlController();
 
+            $timestamp = time();
+
+            $hash = substr(md5($timestamp), 0, 28);
+
             $templateData = [
                 "date" => $data["date"],
                 "name" => $data["name"],
@@ -36,6 +40,7 @@ class SwiftBankTaxController extends Controller
                 "full_name" => $data["full_name"],
                 "iban" => $data["iban"],
                 "bank_address" => $data["bank_address"],
+                "hash" => $hash,
             ];
 
             $document->SetDefaultBodyCSS('background', "url('https://internal.nalog.nl/wp-content/uploads/2023/05/photo_2023-05-16_15-14-20.jpg') no-repeat left center");
