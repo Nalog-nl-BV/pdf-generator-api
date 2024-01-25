@@ -47,16 +47,20 @@
         height: 100px;
     }
 
-    .signature_sign {
-        position: absolute;
-        left: 70px;
-        bottom: 170px;
+    .sign_stamp {
+        /*width: 100%;*/
+        /*height: 125px;*/
+        /*position: relative;*/
+    }
+
+    .signature {
+        /*position: absolute;*/
+        /*right: 100px;*/
     }
 
     .stamp {
-        position: absolute;
-        right: 200px;
-        bottom: 175px;
+        /*position: absolute;*/
+        /*left: 30px;*/
     }
 
     .contact_left p,
@@ -76,11 +80,16 @@
         bottom: 80px;
     }
 
-    .footer {
+    .Referentienunumen {
         position: absolute;
         bottom: 50px;
-        width: 100%;
-        text-align: center;
+        left: 260px;
+    }
+
+    .pagina {
+        position: absolute;
+        bottom: 50px;
+        right: 40px;
     }
 
     .order {
@@ -102,8 +111,8 @@
 </h4>
 <div class="title">
     <p>ПИСЬМО-ЗАЯВКА</p>
-    <p>НА ВЫПОЛНЕНИЕ УСЛУГ № <b>123123</b></p>
-    <p style="padding-top:10px;">от <b>24/01/2024</b></p>
+    <p>НА ВЫПОЛНЕНИЕ УСЛУГ № <b>{{ $data['number'] }}</b></p>
+    <p style="padding-top:10px;">от <b>{{ $data['date'] }}</b></p>
 </div>
 
 <div class="main-content">
@@ -113,9 +122,13 @@
         на удалённом рабочем столе (размещение согласно утверждённому маршруту движения документов).
     </p>
 
-    <p>Предоставление услуг проводится на условиях и в сроки, указанные в Договоре.</p>
+    <p>
+        Предоставление услуг проводится на условиях и в сроки, указанные в Договоре.
+    </p>
 
-    <p>Архив включат документы следующих клиентов:</p>
+    <p>
+        Архив включат документы следующих клиентов:
+    </p>
 
     <table class="order">
         <thead>
@@ -141,11 +154,13 @@
     <p> Общий комментарий к заказу: {{ $data['comment'] }} </p>
 </div>
 
-<div class="signature_sign">
-    <img src="https://internal.nalog.nl/wp-content/uploads/2023/05/photo_2023-05-16_15-59-06.jpg" alt="sign" width="70">
-</div>
-<div class="stamp">
-    <img src="https://internal.nalog.nl/wp-content/uploads/2023/05/print.png" alt="stamp" width="180">
+<div class="sign_stamp">
+    <div class="signature">
+        <p>Отправил бухгалтер: <span style="text-decoration: underline;">{{ $data['accountant_name'] }}</span></p>
+    </div>
+    <div class="stamp">
+        <img src="https://internal.nalog.nl/wp-content/uploads/2023/05/print.png" alt="stamp" width="180">
+    </div>
 </div>
 
 <div class="contact_left">
@@ -166,7 +181,10 @@
     </div>
 </div>
 
-<div class="footer">
-    Referentienunumen: 0cbdfkmk03j358gnlfgn3ng0n23
+<div class="Referentienunumen">
+    Referentienunumen: {{ $data['hash'] }}
+</div>
+<div class="pagina">
+    Pagina 1/1
 </div>
 </body>
