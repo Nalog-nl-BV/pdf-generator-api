@@ -95,6 +95,7 @@
     .order {
         border-collapse: collapse;
         font-size: 16px;
+        width: 100%;
     }
     .order-table {
         border: 1px solid;
