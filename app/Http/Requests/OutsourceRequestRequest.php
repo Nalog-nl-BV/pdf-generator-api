@@ -27,7 +27,7 @@ class OutsourceRequestRequest extends FormRequest
         return [
             "fileName" => "required|string",
             "date" => "required|string",
-            "number" => "required|integer",
+            "number" => "required|string",
             "accountant_name" => "required|string",
             "comment" => "string",
             "orders" => "required|array",
