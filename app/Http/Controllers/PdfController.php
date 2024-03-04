@@ -7,9 +7,8 @@ use App\Http\Requests\PDFGenerateRequest;
 use Exception;
 use Illuminate\Http\Client\Response;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Http;
 use Mpdf\HTMLParserMode;
 use Mpdf\Mpdf;
 use Mpdf\Output\Destination;
@@ -20,12 +19,34 @@ class PdfController extends Controller
      * @param PDFGenerateRequest $request
      * @return JsonResponse|Response
      */
-    public function PDFGenerate(PDFGenerateRequest $request): JsonResponse|Response
+    public function PDFGenerate(PDFGenerateRequest $request): JsonResponse|Response|int
     {
         try {
             $data = $request->validated();
 
-            $document = new Mpdf();
+            $margins = $data['margins'] ?? true;
+
+            $serverFolderPath = $data['path'] ?? "";
+
+            $orientation = $data['orientation'] ?? "P";
+
+            $widthInPx = $data['width'] ?? null;
+            $heightInPx = $data['height'] ?? null;
+
+            $widthInMm = $widthInPx ? $widthInPx * 0.2645833333 : null;
+            $heightInMm = $heightInPx ? $heightInPx * 0.2645833333 : null;
+
+            $format = ($widthInMm && $heightInMm) ? [$heightInMm, $widthInMm] : 'A4';
+
+            $document = new Mpdf([
+                'mode' => 'utf-8',
+                'format' => $format, // розмір сторінки в міліметрах (8.5 x 11 дюймів)
+                'margin_left' => $margins ? 15 : 0,
+                'margin_right' => $margins ? 15 : 0,
+                'margin_top' => $margins ? 16 : 0,
+                'margin_bottom' => $margins ? 16 : 0,
+                'orientation' => $orientation,
+            ]);
 
             $documentFileName = $data["name"] ."_" . uniqid() . ".pdf";
 
@@ -47,11 +68,10 @@ class PdfController extends Controller
 
             } else { /// type = file
                 Storage::disk('public')->put('/PDFs/' . $documentFileName, $document->Output($documentFileName, Destination::STRING_RETURN));
-
                 return Http::post('https://hub.nalog.nl/api/v1/storage/store', [
                     "token" => $data["token"],
                     "bucket_name" => "nalog",
-                    "dir_name" => "PDFs",
+                    "dir_name" => "PDFs/" . $serverFolderPath,
                     "is_public" => true,
                     "files_data" => [
                         Storage::disk('public')->url('/PDFs/' . $documentFileName) => uniqid() . '.pdf'

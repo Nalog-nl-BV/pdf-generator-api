@@ -28,8 +28,11 @@ class PDFGenerateRequest extends FormRequest
             "html" => "required|string",
             "width" => "integer",
             "height" => "integer",
+            "orientation" => "string",
+            "margins" => 'boolean',
             "css" => "nullable|string",
             "name" => "required|string",
+            "path" => "string",
             "token" => [
                 'required',
                 Rule::in([env('PDF_TOKEN')]),
