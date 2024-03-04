@@ -24,7 +24,10 @@ class PdfController extends Controller
         try {
             $data = $request->validated();
 
-            $margins = $data['margins'] ?? true;
+            $margins = true;
+            if(isset($data['margins'])) {
+                $margins = $data['margins'];
+            }
 
             $serverFolderPath = $data['path'] ?? "";
 
