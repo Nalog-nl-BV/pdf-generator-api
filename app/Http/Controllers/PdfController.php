@@ -25,15 +25,7 @@ class PdfController extends Controller
         try {
             $data = $request->validated();
 
-            $widthInPx = $data['width'] ?? null;
-            $heightInPx = $data['height'] ?? null;
-
-            $widthInMm = $widthInPx ? $widthInPx * 0.2645833333 : null;
-            $heightInMm = $heightInPx ? $heightInPx * 0.2645833333 : null;
-
-            $document = new Mpdf([
-                'format' => [$widthInMm, $heightInMm]
-            ]);
+            $document = new Mpdf();
 
             $documentFileName = $data["name"] ."_" . uniqid() . ".pdf";
 
