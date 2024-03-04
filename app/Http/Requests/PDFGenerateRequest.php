@@ -26,6 +26,8 @@ class PDFGenerateRequest extends FormRequest
     {
         return [
             "html" => "required|string",
+            "width" => "integer",
+            "height" => "integer",
             "css" => "nullable|string",
             "name" => "required|string",
             "token" => [
